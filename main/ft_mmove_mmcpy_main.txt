@@ -1,0 +1,49 @@
+
+#include <stdio.h>
+void    *ft_memcpy(void *dst, const void *src, size_t n)
+{
+        unsigned char   *dest;
+        unsigned char   *serc;
+        unsigned long   i;
+
+        i = 0;
+        dest = (unsigned char *) dst;
+        serc = (unsigned char *) src;
+        if (dst == src)
+                return (0);
+        while (i < n)
+        {
+                dest[i] = serc[i];
+                i++;
+        }
+        return ((void *) dest);
+}
+void    *ft_memmove(void *dst, const void *src, size_t len)
+{
+        unsigned char   *udst;
+        unsigned char   *usrc;
+
+        udst = (unsigned char *)dst;
+        usrc = (unsigned char *)src;
+        if (!dst && !src)
+                return (NULL);
+        if (udst < usrc)                        
+                ft_memcpy(dst, src, len);
+        else
+        {
+                len--;
+                while (len != -1)
+                {
+                        *(udst + len) = *(usrc + len);
+                        len--;
+                }
+        }
+        return ((void *) udst);
+}
+int main()
+{
+ 
+    char a[] = "harunutkuekrem";  //Farklı diziler olursa boyutsal 
+    printf("%s\n",ft_memmove(a+4,a+2,5));
+    return 0;                   //Aynı dizi üzerinde olurlarsa index olarak büyük olan daha büyük
+}
